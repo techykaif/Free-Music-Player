@@ -11,4 +11,6 @@
 ## 4. Then type 'npm install electron' to add the node modules in the package 
 ## 5. After Successful Install it will Show the Node Modules in that folder
 ## 6. Then type npm start and Your Application will run
+
+# For Direct .exe Application use Drive Link: https://drive.google.com/file/d/1lSKgA-10sKF5rXU0sCi-cHEM4mVhnF4p/view?usp=sharing
 ### Thanks
