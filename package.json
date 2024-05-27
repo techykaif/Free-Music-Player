@@ -1,0 +1,17 @@
+{
+  "name": "audioplayer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager . my-electron-app --platform=win32 --arch=x64 --out=dist --overwrite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^30.0.8",
+    "electron-packager": "^17.1.2"
+  }
+}

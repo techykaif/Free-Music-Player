@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Music Player</title>
+</head>
+<link rel="icon" href="icons8-musical-note-90.png" type="png">
+<style>
+    .header{
+        width: 100%;
+        height: 70px;
+        padding: 10px;
+        font-size: 20px;
+        left: 0;
+        right: 0;
+        position: fixed;
+        top:0;
+        /* border:1px solid black; */
+        border-bottom: 2px solid grey;
+        background-image: url("header.jpg");
+        background-size: cover;
+        background-position: top;
+    }
+    .title h1{
+        color: white;
+        backdrop-filter: blur(10px);
+        background-color: transparent;
+        background-clip: text;
+        background-size: cover;
+        mix-blend-mode: hard-light;
+        animation: entry ease-in-out 8s;
+    }
+    @keyframes entry {
+        25%{
+            color: red;
+            
+            content: 'Free Music Player';
+        }
+        50%{
+            color: rgb(75, 249, 232);
+            content:'For All';
+        }
+        75%{
+            color: rgb(251, 88, 235);
+            content: 'Music Lovers';
+        }
+        100%{
+            color: yellow;
+            content: 'Enjoy';
+        }
+    }
+    .title h1:hover{
+        cursor: pointer;
+        scale: 1.1;
+        transition: all ease-in-out 0.8s;
+    }
+    .left-header{
+        float: left;
+        position: fixed;
+        left: 0;
+        top: 90px;
+        bottom: 100px;
+        width: 150px;
+        /* border: 1px solid black; */
+        background-size: cover;
+        background-image: url("left-panel.jpg");
+        background-position: center;
+        color: green;
+        border: 5px groove white;
+    }
+    .icon-images{
+        object-fit: cover;
+        height: 40px;
+        width: 40px;
+        object-position: center;
+        position: relative;
+        top: 8px;
+    }
+    .contents{
+        position:fixed;
+        top: 90px;
+        left: 150px;
+        right: 0;
+        bottom: 100px;
+        background-image: url("content-panel.jpg");
+        background-size: cover;
+        background-position: center;
+        /* border: 1px solid black; */
+        border: 5px groove white;
+    }
+    .album-details{
+        color: white;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+        margin-top: 25%;
+        border: 1px solid white;
+        margin-left: 25%;
+        margin-right: 25%;
+        height: 100px;
+        width: 500px;
+        border-radius: 10px;
+        backdrop-filter: blur(4px);
+
+    }
+    .album-details:hover{
+        cursor: pointer;
+        transition: all ease-in-out 1s;
+        scale: 1.1;
+    }
+    .main-controls{
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        /* border: 1px solid black; */
+        border-top: 2px solid grey;
+        height: 100px;
+        left: 0;
+        right: 0;
+    }
+    .wrapper{
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 25px;
+        align-items: center;
+        justify-content: center;
+        color: green;
+    }
+    .home button,.now-playing button,.starred button{
+        font-size: 20px;
+        border-radius: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        width: 100%;
+        border:none;
+        background:none;
+        color: white;
+    }
+    .home button:active,.now-playing button:active,.starred button:active{
+        color:green;
+        background-color: rgb(105, 238, 238);
+        transition: all ease-in-out 0.5s;
+    }
+    .home button:hover,.now-playing button:hover,.starred button:hover{
+        color: red;
+        scale: 1.1;
+        cursor: pointer;
+    }
+    .home button:hover + #home{
+        scale: 1.1;
+        color: red;
+        background-color: white;
+        transition: all ease-in-out 0.8s;
+    }
+    .now-playing button:hover + #nowPlaying{
+        scale: 1.1;
+        color: red;
+        background-color: white;
+        transition: all ease-in-out 0.8s;
+    }
+    .starred button:hover + #starred{
+        scale: 1.1;
+        color: red;
+        background-color: white;
+        transition: all ease-in-out 0.8s;
+    }
+    #addclass button:hover + #add{
+        scale: 1.1;
+        color: red;
+        background-color: white;
+        transition: all ease-in-out 0.8s;
+    }
+    .media-controls{
+        margin-top: 20px;
+        display: flex;
+        margin: 0px 10px;
+        gap: 10px;
+        width: 97%;
+        margin: 20px 10;
+        padding-top: 20px;
+        /* border: 1px solid black; */
+    }
+    .wrapper-controls{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 20px;
+        margin-top: 20px;
+
+    }
+    .seekbar{
+        width: 100%;
+        height: 100%;
+        background: #ddd;
+        outline: none;
+        border-radius: 5px;
+        margin: 0;
+    }
+    .seekbar::-webkit-slider-thumb{
+        width: 20px;
+        height: 20px;
+        background: #007bff;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .music-list-item{
+        list-style-type: none;
+        padding: 10px;
+        font-size: 16px;
+        transition: all ease-in-out 0.5s;
+    }
+    .music-list-item:hover{
+        cursor: pointer;
+        background-color: #db8f8f;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="header">
+        <div class="title" align="center"><h1 id="title">Music Player</h1></div>
+    </div>
+    <div class="left-header">
+        <div class="wrapper">
+        <div class="home">
+            <button id="homeButton">Home</button>
+            <img class="icon-images" src="home.png" alt="" style="left: 38px;" id="home">
+        </div>
+        <div class="starred" id="addclass">
+            <button id="addButton">Add</button>
+            <img class="icon-images" src="add.png" alt="" style="left: 26px;" id="add">
+        </div>
+    </div>
+    </div>
+    <div class="contents" id="content">
+    </div>
+    <div class="main-controls">
+        <div class="media-controls">
+            <span id="currentTime">00:00</span>
+            <input type="range" min="0" max="100" value="0" class="seekbar" id="seekBar">
+            <span id="duration">00:00</span>
+        </div>
+        <div class="wrapper-controls">
+            <div class="volume">
+            <button style="vertical-align: middle;border: none;
+            background-color: transparent;"><img src="medium-volume.png" alt="" height="20px"
+                width="20px" style="vertical-align: middle;border: none;
+                background-color: transparent;cursor: pointer;"  id="volumeControl" ></button><input id="volumeSlider" type="range" min="0" max="100" value="100" style="vertical-align: middle;"><span id="volumeDisplay" style="vertical-align: middle;">100%</span>
+            </div>
+            <div class="media-options">
+            <button style="margin:0px 15px;vertical-align: middle;border: none;
+            background-color: transparent;cursor: pointer;" id="previousButton" ><img src="previous.png" alt="" height="20px" width="20px"></button><button id="playPauseController" style="margin:0px 15px;vertical-align: middle;border: none;
+            background-color: transparent;cursor: pointer;" ><img id="playPauseImage" src="pause.png" alt="" height="20px" width="20px"></button><button style="margin:0px 15px;vertical-align: middle;border: none;
+            background-color: transparent;cursor: pointer;" id="nextButton"><img src="next.png" alt="" height="20px" width="20px"></button>
+        </div>
+        <div class="playback-speed">
+            <span>Playback Speed : </span><select id="speedSelector">
+                <option value="0.25">0.25x</option>
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+                <option value="2.5">2.5x</option>
+                <option value="3">3x</option>
+              </select>
+              
+        </div>
+    </div>
+    </div>
+    
+<script src="renderer.js"></script>
+</body>
+</html>
